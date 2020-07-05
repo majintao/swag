@@ -1,0 +1,53 @@
+basePath: /v2
+definitions:
+  api.Bar:
+    properties:
+      field:
+        type: string
+    type: object
+  api.Foo:
+    properties:
+      arrayField1:
+        items:
+          type: string
+        type: array
+      arrayField2:
+        items:
+          $ref: '#/definitions/api.Bar'
+        type: array
+      field1:
+        type: string
+      insideData:
+        $ref: '#/definitions/api.Bar'
+        type: object
+      outsideData:
+        type: string
+    required:
+    - arrayField1
+    - arrayField2
+    - field1
+    - insideData
+    type: object
+host: petstore.swagger.io
+info:
+  contact: {}
+  description: This is a sample server
+  license: {}
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /testapi/get-foo:
+    get:
+      consumes:
+      - application/json
+      description: get Foo
+      operationId: get-foo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Foo'
+swagger: "2.0"

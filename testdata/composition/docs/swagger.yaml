@@ -1,0 +1,133 @@
+basePath: /v2
+definitions:
+  api.Bar:
+    properties:
+      field2:
+        type: string
+    type: object
+  api.BarMap:
+    additionalProperties:
+      $ref: '#/definitions/api.Bar'
+    type: object
+  api.Foo:
+    properties:
+      field1:
+        type: string
+    type: object
+  api.FooBar:
+    properties:
+      field1:
+        type: string
+      field2:
+        type: string
+    type: object
+  api.FooBarMap:
+    properties:
+      field3:
+        additionalProperties:
+          $ref: '#/definitions/api.MapValue'
+        type: object
+    type: object
+  api.FooBarPointer:
+    properties:
+      field1:
+        type: string
+      field2:
+        type: string
+      message:
+        type: string
+    type: object
+  api.MapValue:
+    properties:
+      field4:
+        type: string
+    type: object
+host: petstore.swagger.io
+info:
+  contact: {}
+  description: This is a sample server
+  license: {}
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /testapi/get-bar:
+    get:
+      consumes:
+      - application/json
+      description: get Bar
+      operationId: get-bar
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Bar'
+      summary: Show a account
+  /testapi/get-barmap:
+    get:
+      consumes:
+      - application/json
+      description: get BarMap
+      operationId: get-bar-map
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.BarMap'
+  /testapi/get-foo:
+    get:
+      consumes:
+      - application/json
+      description: get Foo
+      operationId: get-foo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Foo'
+  /testapi/get-foobar:
+    get:
+      consumes:
+      - application/json
+      description: get FooBar
+      operationId: get-foobar
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.FooBar'
+  /testapi/get-foobar-pointer:
+    get:
+      consumes:
+      - application/json
+      description: get FooBarPointer
+      operationId: get-foobar-pointer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.FooBarPointer'
+  /testapi/get-foobarmap:
+    get:
+      consumes:
+      - application/json
+      description: get FoorBarMap
+      operationId: get-foo-bar-map
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.FooBarMap'
+swagger: "2.0"
