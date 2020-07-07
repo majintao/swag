@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/swaggo/swag"
-	"github.com/swaggo/swag/gen"
+	"github.com/majintao/swag"
+	"github.com/majintao/swag/gen"
 	"github.com/urfave/cli/v2"
 	"log"
+	"majintao/go-yapi"
 	"os"
 )
 
@@ -74,9 +76,10 @@ var initFlags = []cli.Flag{
 		Usage: "Generate timestamp at the top of docs.go, true by default",
 	},
 }
+
 const (
 	testInstanceURL = "http://yapi.iacorn.cn"
-	testToken = "8cde6e3bcbdb1c7bc0d8a2992fe0d79b0f07d186bfe7ebc5c6723b403e6830d8"
+	testToken       = "8cde6e3bcbdb1c7bc0d8a2992fe0d79b0f07d186bfe7ebc5c6723b403e6830d8"
 )
 
 func initAction(c *cli.Context) error {
@@ -110,7 +113,6 @@ func initAction(c *cli.Context) error {
 		fmt.Println(path)
 	}
 
-	/*
 	swagger, err := gen.New().BuildSwagger(config)
 
 	if err != nil {
@@ -126,13 +128,11 @@ func initAction(c *cli.Context) error {
 	}
 
 	swaggerJson := string(swagger)
-	result,_,_ := yapiClient.Interface.UploadSwagger(&swaggerJson)
-	marshal,_ := json.Marshal(result)
+	result, _, _ := yapiClient.Interface.UploadSwagger(&swaggerJson)
+	marshal, _ := json.Marshal(result)
 	api := string(marshal)
 	fmt.Println(api)
 
-
-	 */
 	return nil
 }
 

@@ -15,7 +15,7 @@ import (
 
 	"github.com/ghodss/yaml"
 	"github.com/go-openapi/spec"
-	"github.com/swaggo/swag"
+	"github.com/majintao/swag"
 )
 
 // Gen presents a generate tool for swag.
@@ -139,7 +139,7 @@ func (g *Gen) Build(config *Config) error {
 }
 
 // 获取api解析信息
-func (g *Gen) GetParser(config *Config) (*swag.Parser, error){
+func (g *Gen) GetParser(config *Config) (*swag.Parser, error) {
 	if _, err := os.Stat(config.SearchDir); os.IsNotExist(err) {
 		return nil, fmt.Errorf("dir: %s is not exist", config.SearchDir)
 	}
@@ -190,7 +190,7 @@ func (g *Gen) BuildSwagger(config *Config) (s string, err error) {
 	}
 	**/
 
-	return string(b),nil
+	return string(b), nil
 }
 
 func (g *Gen) writeFile(b []byte, file string) error {
