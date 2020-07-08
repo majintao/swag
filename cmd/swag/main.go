@@ -136,10 +136,27 @@ func initAction(c *cli.Context) error {
 	return nil
 }
 
+func listMenuAction(c *cli.Context) error {
+	yapiClient, err1 := yapi.NewClient(nil, testInstanceURL, testToken)
+	if err1 != nil {
+		return fmt.Errorf("Client creation -> Got an error: %s", err1)
+	}
+	if yapiClient == nil {
+		return fmt.Errorf("Expected a client. Got none")
+	}
+
+	projectResp, _, _ := yapiClient.Project.Get()
+	result, _, _ := yapiClient.CatMenu.Get(projectResp.Data.ID)
+	marshal, _ := json.Marshal(result)
+	api := string(marshal)
+	fmt.Println(api)
+	return nil
+}
+
 func main() {
 	app := cli.NewApp()
 	app.Version = swag.Version
-	app.Usage = "Automatically generate RESTful API documentation with Swagger 2.0 for Go."
+	app.Usage = "yapi"
 	app.Commands = []*cli.Command{
 		{
 			Name:    "init",
@@ -147,6 +164,11 @@ func main() {
 			Usage:   "Create docs.go",
 			Action:  initAction,
 			Flags:   initFlags,
+		}, {
+			Name:    "listMenu",
+			Aliases: []string{"lm"},
+			Usage:   "列举当前的目录",
+			Action:  listMenuAction,
 		},
 	}
 	err := app.Run(os.Args)
