@@ -3,11 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/majintao/go-yapi"
 	"github.com/majintao/swag"
 	"github.com/majintao/swag/gen"
 	"github.com/urfave/cli/v2"
 	"log"
-	"majintao/go-yapi"
 	"os"
 )
 
