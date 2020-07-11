@@ -1,4 +1,3 @@
-basePath: /v2
 definitions:
   api.Bar:
     properties:
@@ -31,17 +30,14 @@ definitions:
     type: object
   nested2.Body:
     properties:
+      myValue:
+        type: string
       value:
         type: string
     type: object
-host: petstore.swagger.io
 info:
   contact: {}
-  description: This is a sample server
   license: {}
-  termsOfService: http://swagger.io/terms/
-  title: Swagger Example API
-  version: "1.0"
 paths:
   /testapi/get-foo:
     get:

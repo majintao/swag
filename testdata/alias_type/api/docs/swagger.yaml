@@ -1,0 +1,29 @@
+definitions:
+  data.TimeContainer:
+    properties:
+      created_at:
+        type: string
+      name:
+        type: string
+      timestamp:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /testapi/time-as-time-container:
+    get:
+      consumes:
+      - application/json
+      description: test container with time and time alias
+      operationId: time-as-time-container
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/data.TimeContainer'
+      summary: Get container with time and time alias
+swagger: "2.0"

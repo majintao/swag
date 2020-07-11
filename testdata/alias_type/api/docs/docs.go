@@ -18,7 +18,6 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
         "contact": {},
         "license": {},
         "version": "{{.Version}}"
@@ -26,21 +25,22 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/testapi/get-foo": {
+        "/testapi/time-as-time-container": {
             "get": {
-                "description": "get Foo",
+                "description": "test container with time and time alias",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "operationId": "get-foo",
+                "summary": "Get container with time and time alias",
+                "operationId": "time-as-time-container",
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "ok",
                         "schema": {
-                            "$ref": "#/definitions/api.Foo"
+                            "$ref": "#/definitions/data.TimeContainer"
                         }
                     }
                 }
@@ -48,52 +48,16 @@ var doc = `{
         }
     },
     "definitions": {
-        "api.Bar": {
+        "data.TimeContainer": {
             "type": "object",
             "properties": {
-                "field": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.Foo": {
-            "type": "object",
-            "required": [
-                "arrayField1",
-                "arrayField2",
-                "field1",
-                "insideData"
-            ],
-            "properties": {
-                "arrayField1": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "arrayField2": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/api.Bar"
-                    }
-                },
-                "field1": {
+                "created_at": {
                     "type": "string"
                 },
-                "insideData": {
-                    "type": "object",
-                    "$ref": "#/definitions/api.Bar"
+                "name": {
+                    "type": "string"
                 },
-                "outsideData": {
-                    "type": "object",
-                    "$ref": "#/definitions/nested2.Body"
-                }
-            }
-        },
-        "nested2.Body": {
-            "type": "object",
-            "properties": {
-                "value": {
+                "timestamp": {
                     "type": "string"
                 }
             }
@@ -112,12 +76,12 @@ type swaggerInfo struct {
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
-	Version:     "1.0",
-	Host:        "petstore.swagger.io",
-	BasePath:    "/v2",
+	Version:     "",
+	Host:        "",
+	BasePath:    "",
 	Schemes:     []string{},
-	Title:       "Swagger Example API",
-	Description: "This is a sample server",
+	Title:       "",
+	Description: "",
 }
 
 type s struct{}

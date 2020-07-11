@@ -1,6 +1,8 @@
 package api
 
-import "github.com/swaggo/swag/testdata/nested2"
+import (
+	"github.com/majintao/swag/testdata/nested2"
+)
 
 type Foo struct {
 	Field1      string `validate:"required"`

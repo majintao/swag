@@ -9,9 +9,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   post_id      path   int     true  "Some ID" Format(int64)
-// @Success 200 {string} web.Post
-// @Failure 400 {object} web.APIError "We need ID!!"
-// @Failure 404 {object} web.APIError "Can not find ID"
+// @Success 200 {object} web.Post
 // @Router /posts/{post_id} [get]
 func GetPost(c *gin.Context) {
 	//write your code

@@ -373,12 +373,12 @@ func TestGen_cgoImports(t *testing.T) {
 }
 
 func TestGen_GetParaser(t *testing.T) {
-	searchDir := "C:\\Users\\Nonolive\\Desktop\\test-pro\\composition"
+	searchDir := "E:\\workplace\\swag\\testdata\\composition\\api"
 
 	config := &Config{
-		SearchDir:          searchDir,
-		MainAPIFile:        "main.go",
-		ParseDependency:    true,
+		SearchDir:       searchDir,
+		MainAPIFile:     "api.go",
+		ParseDependency: true,
 	}
 
 	parser, err := New().GetParser(config)

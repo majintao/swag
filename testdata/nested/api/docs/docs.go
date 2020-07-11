@@ -18,7 +18,6 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
         "contact": {},
         "license": {},
         "version": "{{.Version}}"
@@ -93,6 +92,9 @@ var doc = `{
         "nested2.Body": {
             "type": "object",
             "properties": {
+                "myValue": {
+                    "type": "string"
+                },
                 "value": {
                     "type": "string"
                 }
@@ -112,12 +114,12 @@ type swaggerInfo struct {
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
-	Version:     "1.0",
-	Host:        "petstore.swagger.io",
-	BasePath:    "/v2",
+	Version:     "",
+	Host:        "",
+	BasePath:    "",
 	Schemes:     []string{},
-	Title:       "Swagger Example API",
-	Description: "This is a sample server",
+	Title:       "",
+	Description: "",
 }
 
 type s struct{}

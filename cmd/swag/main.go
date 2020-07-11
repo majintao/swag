@@ -73,7 +73,7 @@ func listApi(c *cli.Context) error {
 		SearchDir:          c.String(searchDirFlag),
 		MainAPIFile:        c.String(generalInfoFlag),
 		PropNamingStrategy: strategy,
-		ParseDependency:    true,
+		ParseDependency:    true, // 需要解析外部依赖
 	}
 
 	parser, err := gen.New().GetParser(config)
@@ -88,6 +88,39 @@ func listApi(c *cli.Context) error {
 	return nil
 }
 
+func UpdateApi(c *cli.Context) error {
+	strategy := c.String(propertyStrategyFlag)
+
+	switch strategy {
+	case swag.CamelCase, swag.SnakeCase, swag.PascalCase:
+	default:
+		return fmt.Errorf("not supported %s propertyStrategy", strategy)
+	}
+
+	config := &gen.Config{
+		SearchDir:          c.String(searchDirFlag),
+		MainAPIFile:        c.String(generalInfoFlag),
+		PropNamingStrategy: strategy,
+		ParseDependency:    true, // 需要解析外部依赖
+	}
+
+	yapiClient, err1 := yapi.NewClient(nil, testInstanceURL, testToken)
+	if err1 != nil {
+		return fmt.Errorf("Client creation -> Got an error: %s", err1)
+	}
+	if yapiClient == nil {
+		return fmt.Errorf("Expected a client. Got none")
+	}
+
+	swagger, _ := gen.New().BuildSwagger(config)
+	swaggerJson := string(swagger)
+	result, _, _ := yapiClient.Interface.UploadSwagger(&swaggerJson)
+	marshal, _ := json.Marshal(result)
+	api := string(marshal)
+	fmt.Println(api)
+	return nil
+}
+
 func main() {
 	app := cli.NewApp()
 	app.Version = swag.Version
@@ -97,7 +130,14 @@ func main() {
 			Name:    "listApi",
 			Aliases: []string{"la"},
 			Usage:   "解析当前目录文件api",
-			Action: listApi,
+			Action:  listApi,
+			Flags:   parseFlag,
+		},
+		{
+			Name:    "uploadApi",
+			Aliases: []string{"ua"},
+			Usage:   "解析当前目录文件api",
+			Action:  UpdateApi,
 			Flags:   parseFlag,
 		},
 		{
