@@ -373,13 +373,11 @@ func TestGen_cgoImports(t *testing.T) {
 }
 
 func TestGen_GetParaser(t *testing.T) {
-	searchDir := "../testdata/simple_cgo/api"
+	searchDir := "C:\\Users\\Nonolive\\Desktop\\test-pro\\composition"
 
 	config := &Config{
 		SearchDir:          searchDir,
-		MainAPIFile:        "./api.go",
-		OutputDir:          "../testdata/simple_cgo/docs",
-		PropNamingStrategy: "",
+		MainAPIFile:        "main.go",
 		ParseDependency:    true,
 	}
 

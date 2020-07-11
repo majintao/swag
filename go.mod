@@ -8,7 +8,7 @@ require (
 	github.com/go-openapi/spec v0.19.4
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a // indirect
-	github.com/majintao/go-yapi v0.0.0-00010101000000-000000000000 // indirect
+	github.com/majintao/go-yapi v0.0.0-00010101000000-000000000000
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.4.0
 	github.com/swaggo/files v0.0.0-20190704085106-630677cd5c14
